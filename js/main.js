@@ -1,18 +1,21 @@
-const braco = document.querySelector("#braco")
-
 const controle = document.querySelectorAll(".controle-ajuste")
 
 controle.forEach( elemento => {
     elemento.addEventListener("click", evento => {
-        manipulaDados(evento.target.textContent);
-    })
+        manipulaDados(evento.target.textContent, evento.target.parentNode)
+    }) // evento.target nos trás o elemento em que estamos clicando do html (o bloco de código)
+       // evento.target.textContent nos trás o conteúdo daquele elemento, nesse caso será (+) ou (-)
+       // textContent para textos e value para inputs
+       // evento.target.parentNode nos trás o elemento que está acima do elemento em que estamos, ou seja, o elemento pai
 })
 
- function manipulaDados(operacao) {
+ function manipulaDados(operacao, controle) {
+    const peca = controle.querySelector(".controle-contador")
+    
     if(operacao === "-") {
-        braco.value = parseInt(braco.value) - 1
+        peca.value = parseInt(peca.value) - 1
     } else {
-        braco.value = parseInt(braco.value) + 1
+        peca.value = parseInt(peca.value) + 1
     }
  }
 
