@@ -1,16 +1,19 @@
-const controle = document.querySelectorAll(".controle-ajuste")
+//const controle = document.querySelectorAll(".controle-ajuste") // ao invés de buscarmos pela nossa classe controle-ajuste, vamos buscar pelo nosso data attribute
+const controle = document.querySelectorAll("[data-controle]")
+
 
 controle.forEach( elemento => {
     elemento.addEventListener("click", evento => {
-        manipulaDados(evento.target.textContent, evento.target.parentNode)
+        manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
     }) // evento.target nos trás o elemento em que estamos clicando do html (o bloco de código)
        // evento.target.textContent nos trás o conteúdo daquele elemento, nesse caso será (+) ou (-)
        // textContent para textos e value para inputs
        // evento.target.parentNode nos trás o elemento que está acima do elemento em que estamos, ou seja, o elemento pai
+       // vamos deixar de usar o texto do nosso atributo (textContent) e passar a buscar pelo valor do nosso data attribute que nomeamos como controle. Ou seja, nós estamos desacoplando nosso HTML do Javascript
 })
 
  function manipulaDados(operacao, controle) {
-    const peca = controle.querySelector(".controle-contador")
+    const peca = controle.querySelector("[data-contador]")
     
     if(operacao === "-") {
         peca.value = parseInt(peca.value) - 1
