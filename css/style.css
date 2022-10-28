@@ -182,7 +182,7 @@ main {
 .estatistica-valor::after {
     content: "";
     display: block;
-    padding-bottom: 90%;
+    padding-bottom: 100%;
     border: 1px solid var(--main-cinza);
     border-radius: 50%;
 }
