@@ -39,7 +39,7 @@ const pecas = {
 controle.forEach( elemento => {
     elemento.addEventListener("click", evento => {
         manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
-        atualizaEstatisticas(evento.target.dataset.peca)
+        atualizaEstatisticas(evento.target.dataset.controle, evento.target.dataset.peca)
     }) // evento.target nos trás o elemento em que estamos clicando do html (o bloco de código)
        // evento.target.textContent nos trás o conteúdo daquele elemento, nesse caso será (+) ou (-)
        // textContent para textos e value para inputs
@@ -57,14 +57,17 @@ controle.forEach( elemento => {
     }
  }
 
- function atualizaEstatisticas(peca) {
-    console.log(peca)
-    console.log(pecas[peca])
-
+ function atualizaEstatisticas(operacao, peca) {
+    
     estatisticas.forEach( elemento => {
-        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
-    })
- }
+        if(operacao === '+') {
+            elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+        } else {
+            elemento.textContent = parseInt(elemento.textContent) - pecas[peca][elemento.dataset.estatistica]
+        }
+        
+    })     
+}
 
 // podemos fazer dessa forma, chamando a nossa funçao
 //robotron.addEventListener("click", dizOi);
